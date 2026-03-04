@@ -26,7 +26,7 @@ const steps: TrackStep[] = [
   {
     title: "Verify the CLAUDE.md file was created",
     description:
-      "Claude will create a CLAUDE.md file in your project folder. You can open it to review the summary and make sure it captured your information correctly.",
+      'Claude will create a CLAUDE.md file in your project folder. You can open it to review the summary and make sure it captured your information correctly. Can\'t see it? CLAUDE.md is a hidden file! On Mac, press ⌘ + Shift + . (period) in Finder to show hidden files.',
   },
 ];
 

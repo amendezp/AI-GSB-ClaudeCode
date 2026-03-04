@@ -1,7 +1,7 @@
 "use client";
 
 import { TrackSection } from "@/components/tracks/track-section";
-import { ChromeExtensionIllustration } from "@/components/tracks/chrome-illustrations";
+import { ChromeExtensionIllustration, ClaudeSidebarIllustration } from "@/components/tracks/chrome-illustrations";
 import { getSectionOffset } from "@/lib/chrome-navigation-sections";
 import type { TrackStep } from "@/components/tracks/track-steps";
 
@@ -28,9 +28,10 @@ const steps: TrackStep[] = [
       "Use the same account you use for Claude Pro/Max. This connects the Chrome extension to your Claude Code session.",
   },
   {
-    title: 'Verify the extension shows "Connected"',
+    title: "Verify the extension is ready",
     description:
-      "You should see a green indicator or connected status in the extension popup. This means Claude Code can now interact with your browser.",
+      "You should see the Claude sidebar panel open in Chrome. It will look like this — with the model selector, chat input, and permission controls. This means the extension is connected and ready to use.",
+    illustration: <ClaudeSidebarIllustration />,
   },
 ];
 

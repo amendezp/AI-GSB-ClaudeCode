@@ -2,13 +2,23 @@
 
 import {
   Check,
+  ChevronDown,
   Globe,
+  MessageSquare,
+  MoreVertical,
   Paperclip,
+  Pin,
+  PinOff,
+  Plus,
   Puzzle,
+  Send,
   Shield,
   ShieldOff,
+  Sparkles,
   Pencil,
   Lightbulb,
+  X,
+  Zap,
 } from "lucide-react";
 
 /**
@@ -112,6 +122,88 @@ export function PermissionsDropdownIllustration() {
             <p className="text-[10px] text-white/40">Accepts all permissions</p>
           </div>
         </div>
+      </div>
+    </div>
+  );
+}
+
+/**
+ * Illustration: Claude Chrome extension sidebar panel.
+ * Realistic recreation of the Claude sidebar in Chrome.
+ */
+export function ClaudeSidebarIllustration() {
+  return (
+    <div className="inline-flex w-72 flex-col rounded-xl bg-[#1a1a1a] overflow-hidden border border-white/10 shadow-2xl">
+      {/* Title bar */}
+      <div className="flex items-center justify-between px-3 py-2 bg-[#1a1a1a] border-b border-white/5">
+        <div className="flex items-center gap-2">
+          <Sparkles className="h-4 w-4 text-[#da7756]" />
+          <span className="text-sm font-semibold text-white">Claude</span>
+        </div>
+        <div className="flex items-center gap-1">
+          <button className="rounded p-1 text-white/40 hover:bg-white/10">
+            <PinOff className="h-3.5 w-3.5" />
+          </button>
+          <button className="rounded p-1 text-white/40 hover:bg-white/10">
+            <X className="h-3.5 w-3.5" />
+          </button>
+        </div>
+      </div>
+
+      {/* Model selector */}
+      <div className="flex items-center justify-between px-3 py-2 border-b border-white/5">
+        <div className="flex items-center gap-1.5 text-xs text-white/70">
+          Sonnet 4.6
+          <ChevronDown className="h-3 w-3 text-white/40" />
+        </div>
+        <div className="flex items-center gap-1.5">
+          <button className="rounded p-1 text-white/40 hover:bg-white/10">
+            <Zap className="h-3.5 w-3.5" />
+          </button>
+          <button className="rounded p-1 text-white/40 hover:bg-white/10">
+            <MessageSquare className="h-3.5 w-3.5" />
+          </button>
+          <button className="rounded p-1 text-white/40 hover:bg-white/10">
+            <MoreVertical className="h-3.5 w-3.5" />
+          </button>
+        </div>
+      </div>
+
+      {/* Empty chat area */}
+      <div className="flex-1 min-h-[180px]" />
+
+      {/* Input area */}
+      <div className="px-3 pb-2">
+        <div className="rounded-xl bg-[#2a2a2a] border border-white/10 px-3 py-2.5">
+          <p className="text-xs text-white/30">How can I help you today?</p>
+        </div>
+      </div>
+
+      {/* Bottom bar */}
+      <div className="flex items-center justify-between px-3 py-2 border-t border-white/5">
+        <div className="flex items-center gap-1.5 text-[11px] text-white/50">
+          <Shield className="h-3 w-3" />
+          Ask before acting
+          <ChevronDown className="h-2.5 w-2.5 text-white/30" />
+        </div>
+        <div className="flex items-center gap-1.5">
+          <button className="rounded p-1 text-white/40 hover:bg-white/10">
+            <Sparkles className="h-3.5 w-3.5" />
+          </button>
+          <button className="rounded p-1 text-white/40 hover:bg-white/10">
+            <Plus className="h-3.5 w-3.5" />
+          </button>
+          <div className="flex h-6 w-6 items-center justify-center rounded-full bg-[#da7756]">
+            <Send className="h-3 w-3 text-white" />
+          </div>
+        </div>
+      </div>
+
+      {/* Disclaimer */}
+      <div className="px-3 pb-2 text-center">
+        <p className="text-[9px] text-white/25">
+          Claude is AI and can make mistakes. Please double-check responses.
+        </p>
       </div>
     </div>
   );

@@ -3,7 +3,7 @@
 import { TrackSection } from "@/components/tracks/track-section";
 import { PermissionsDropdownIllustration } from "@/components/tracks/chrome-illustrations";
 import { getSectionOffset } from "@/lib/chrome-navigation-sections";
-import { AlertTriangle } from "lucide-react";
+import { AlertTriangle, Sparkles, Eye } from "lucide-react";
 import type { TrackStep } from "@/components/tracks/track-steps";
 
 function AutoAcceptCallout() {
@@ -19,6 +19,29 @@ function AutoAcceptCallout() {
             step. This is faster for complex tasks but means you&apos;re trusting
             Claude to make decisions autonomously. You can always switch back to
             &quot;Ask permissions&quot; if you want more control.
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function WowMomentCallout() {
+  return (
+    <div className="mt-2 rounded-lg border border-purple-200 bg-gradient-to-r from-purple-50 to-fuchsia-50 p-4">
+      <div className="flex items-start gap-3">
+        <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-purple-100">
+          <Eye className="h-4 w-4 text-purple-600" />
+        </div>
+        <div className="text-sm leading-relaxed text-purple-900">
+          <p className="font-semibold flex items-center gap-1.5">
+            <Sparkles className="h-3.5 w-3.5 text-purple-500" />
+            This is the WOW moment
+          </p>
+          <p className="mt-1 text-purple-800">
+            You are watching an AI autonomously control your web browser to create a
+            professional document tailored to your unique career. A year ago, this was
+            science fiction. Take a second to appreciate what just happened.
           </p>
         </div>
       </div>
@@ -43,9 +66,10 @@ const steps: TrackStep[] = [
       "Use my Chrome browser to create a new Google Doc writing a cover letter for why I want to work at Anthropic. Use specific examples from my career background in the CLAUDE.md file.",
   },
   {
-    title: "Watch Claude work in Chrome",
+    title: "Sit back and watch the magic happen",
     description:
-      "Claude will open Chrome, navigate to Google Docs, create a new document, and write your cover letter. Watch it happen in real time — you'll see your browser being controlled automatically.",
+      "This is the moment. Claude is about to take over your browser — opening Chrome, navigating to Google Docs, creating a brand new document, and writing a fully personalized cover letter, all by itself. You'll see your cursor moving, tabs opening, and text appearing in real time. It's like watching a ghost type your dream application. Don't touch anything — just enjoy the show!",
+    illustration: <WowMomentCallout />,
   },
   {
     title: "Review your cover letter",
