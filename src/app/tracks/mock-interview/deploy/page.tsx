@@ -6,7 +6,7 @@ import {
   VercelDeployIllustration,
 } from "@/components/tracks/interview-illustrations";
 import { getSectionOffset } from "@/lib/mock-interview-sections";
-import { Globe, PartyPopper, AlertTriangle } from "lucide-react";
+import { Globe, PartyPopper, AlertTriangle, ShieldAlert } from "lucide-react";
 import type { TrackStep } from "@/components/tracks/track-steps";
 
 function DeployIntro() {
@@ -91,6 +91,22 @@ const steps: TrackStep[] = [
     title: "Add your API key as an environment variable",
     description:
       'Before deploying, expand the "Environment Variables" section. Add a new variable with the name ANTHROPIC_API_KEY and paste your API key as the value. This keeps your key secure — it\'s stored encrypted on Vercel\'s servers, not in your code.',
+    illustration: (
+      <div className="rounded-lg border-2 border-red-300 bg-gradient-to-r from-red-50 to-orange-50 p-4">
+        <div className="flex items-start gap-3">
+          <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-red-100">
+            <ShieldAlert className="h-4 w-4 text-red-600" />
+          </div>
+          <div className="text-sm leading-relaxed text-red-900">
+            <p className="font-semibold">Critical step — your app won&apos;t work without this!</p>
+            <p className="mt-1 text-red-800">
+              The variable name must be exactly <code className="rounded bg-red-100 px-1.5 py-0.5 font-mono text-xs font-bold">ANTHROPIC_API_KEY</code>.
+              Without it, the AI features won&apos;t be able to connect to Claude and your app will show errors.
+            </p>
+          </div>
+        </div>
+      </div>
+    ),
   },
   {
     title: "Deploy!",
