@@ -17,19 +17,35 @@ export const CHECKLIST_ITEMS: ChecklistItem[] = [
     id: "chrome-extension",
     label: "Claude Chrome Extension installed",
     description: "Enables Claude to interact with your browser",
-    helpUrl: "https://chromewebstore.google.com/detail/claude/danfohhogdiklbofbgndkackimchjmgb",
+    helpUrl: "https://chromewebstore.google.com/publisher/anthropic/u308d63ea0533efcf7ba778ad42da7390",
   },
   {
     id: "git",
     label: "Git installed on your computer",
-    description: "For version control and deployment",
-    helpUrl: "https://git-scm.com/downloads",
+    description: "Windows users only — Git comes pre-installed on Mac",
+    helpUrl: "https://git-scm.com/install/windows",
+    expandableHelp: {
+      title: "How to install Git on Windows",
+      steps: [
+        "Go to git-scm.com/install/windows and download the installer.",
+        "Run the installer. Click Next on each screen to accept the defaults — the installer has many screens, but you don't need to change anything.",
+        "If it asks you to choose an editor, keep the default and click Next.",
+        'When you see "Adjusting your PATH environment," keep the recommended option selected.',
+      ],
+      note: "Already have Git? You can skip this step. If you're not sure, install it anyway — reinstalling won't cause problems.",
+    },
   },
   {
     id: "github-account",
     label: "GitHub account created",
     description: "Free account for code hosting",
     helpUrl: "https://github.com/signup",
+  },
+  {
+    id: "vercel-account",
+    label: "Vercel account created",
+    description: "Free account for deploying your project to the web",
+    helpUrl: "https://vercel.com/signup",
   },
 ];
 

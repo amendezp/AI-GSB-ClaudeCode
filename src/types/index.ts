@@ -3,6 +3,11 @@ export interface ChecklistItem {
   label: string;
   description: string;
   helpUrl: string;
+  expandableHelp?: {
+    title: string;
+    steps: string[];
+    note?: string;
+  };
 }
 
 export interface Concept {
