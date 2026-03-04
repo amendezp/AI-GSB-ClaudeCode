@@ -81,14 +81,15 @@ export function TrackSection({
   const { completedSteps, toggleStep, completedTracks, completeTrack } =
     useWorkshopStore();
 
-  const sectionKey = `chrome-nav-section-${sectionIndex}`;
+  const sectionKeyPrefix = `${trackId}-section`;
+  const sectionKey = `${sectionKeyPrefix}-${sectionIndex}`;
   const sectionComplete = completedSteps.includes(sectionKey);
   const trackComplete = completedTracks.includes(trackId);
 
   const handleComplete = () => {
     // Mark section complete
     if (!sectionComplete) {
-      toggleStep("chrome-nav-section", sectionIndex);
+      toggleStep(sectionKeyPrefix, sectionIndex);
     }
     if (isLastSection) {
       completeTrack(trackId);

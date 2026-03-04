@@ -1,16 +1,12 @@
 "use client";
 
-import { PageContainer } from "@/components/layout/page-container";
-import { TrackPlaceholder } from "@/components/tracks/track-placeholder";
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 export default function MockInterviewTrackPage() {
-  return (
-    <PageContainer>
-      <TrackPlaceholder
-        trackNumber={3}
-        trackTitle="AI Mock Interview Generator"
-        accentClass="track-3"
-      />
-    </PageContainer>
-  );
+  const router = useRouter();
+  useEffect(() => {
+    router.replace("/tracks/mock-interview/plan-mode");
+  }, [router]);
+  return null;
 }

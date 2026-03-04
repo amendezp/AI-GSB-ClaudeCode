@@ -9,14 +9,15 @@ import type { Section } from "@/lib/chrome-navigation-sections";
 interface SectionProgressProps {
   sections: Section[];
   accentClass: string;
+  sectionKeyPrefix?: string;
 }
 
-export function SectionProgress({ sections, accentClass }: SectionProgressProps) {
+export function SectionProgress({ sections, accentClass, sectionKeyPrefix = "chrome-nav-section" }: SectionProgressProps) {
   const pathname = usePathname();
   const { completedSteps } = useWorkshopStore();
 
   const getStatus = (section: Section, index: number) => {
-    const key = `chrome-nav-section-${index}`;
+    const key = `${sectionKeyPrefix}-${index}`;
     if (completedSteps.includes(key)) return "completed";
     if (pathname === section.href) return "current";
     return "upcoming";

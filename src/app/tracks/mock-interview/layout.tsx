@@ -1,11 +1,11 @@
 "use client";
 
-import { Globe } from "lucide-react";
+import { Rocket } from "lucide-react";
 import { PageContainer } from "@/components/layout/page-container";
 import { SectionProgress } from "@/components/tracks/section-progress";
-import { CHROME_NAVIGATION_SECTIONS } from "@/lib/chrome-navigation-sections";
+import { MOCK_INTERVIEW_SECTIONS } from "@/lib/mock-interview-sections";
 
-export default function ChromeNavigationLayout({
+export default function MockInterviewLayout({
   children,
 }: {
   children: React.ReactNode;
@@ -17,42 +17,42 @@ export default function ChromeNavigationLayout({
         <div
           className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl"
           style={{
-            backgroundColor: `color-mix(in oklch, var(--color-track-2) 15%, transparent)`,
-            color: `var(--color-track-2)`,
+            backgroundColor: `color-mix(in oklch, var(--color-track-3) 15%, transparent)`,
+            color: `var(--color-track-3)`,
           }}
         >
-          <Globe className="h-7 w-7" />
+          <Rocket className="h-7 w-7" />
         </div>
         <div className="mb-2 text-sm font-medium text-muted-foreground">
-          Track 2
+          Track 3
         </div>
         <h1 className="mb-3 font-serif text-3xl font-bold tracking-tight text-foreground">
-          Chrome Navigation
+          AI Mock Interview Generator
         </h1>
         <p className="mx-auto mb-4 max-w-lg text-muted-foreground">
-          Set up Claude&apos;s memory with your career data, then let it browse
-          Chrome to create documents and research on your behalf.
+          Build and deploy a full AI-powered interview prep tool using Claude,
+          GitHub, and Vercel. Go from zero to a live web app.
         </p>
         <div className="inline-flex items-center gap-3 text-xs text-muted-foreground">
           <span
             className="rounded-full px-2.5 py-1 font-medium"
             style={{
-              backgroundColor: `color-mix(in oklch, var(--color-track-2) 12%, transparent)`,
-              color: `var(--color-track-2)`,
+              backgroundColor: `color-mix(in oklch, var(--color-track-3) 12%, transparent)`,
+              color: `var(--color-track-3)`,
             }}
           >
-            Intermediate
+            Advanced
           </span>
-          <span>~5 min</span>
+          <span>~20 min</span>
         </div>
       </div>
 
       {/* Section progress */}
       <div className="mt-6">
         <SectionProgress
-          sections={CHROME_NAVIGATION_SECTIONS}
-          accentClass="track-2"
-          sectionKeyPrefix="chrome-navigation-section"
+          sections={MOCK_INTERVIEW_SECTIONS}
+          accentClass="track-3"
+          sectionKeyPrefix="mock-interview-section"
         />
       </div>
 

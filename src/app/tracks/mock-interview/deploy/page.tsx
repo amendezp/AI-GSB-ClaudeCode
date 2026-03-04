@@ -1,0 +1,122 @@
+"use client";
+
+import { TrackSection } from "@/components/tracks/track-section";
+import {
+  AnthropicAPIKeyIllustration,
+  VercelDeployIllustration,
+} from "@/components/tracks/interview-illustrations";
+import { getSectionOffset } from "@/lib/mock-interview-sections";
+import { Globe, PartyPopper, AlertTriangle } from "lucide-react";
+import type { TrackStep } from "@/components/tracks/track-steps";
+
+function DeployIntro() {
+  return (
+    <div className="rounded-lg border bg-card p-5">
+      <div className="flex items-start gap-3">
+        <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-blue-100">
+          <Globe className="h-5 w-5 text-blue-700" />
+        </div>
+        <div>
+          <h3 className="font-medium text-foreground">The finish line!</h3>
+          <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
+            You&apos;ll deploy your interview app to the web so anyone can use
+            it. Vercel makes this incredibly easy — especially with Next.js
+            projects. In a few clicks, your app will be live with its own URL.
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function APIKeyWarning() {
+  return (
+    <div className="mt-2 rounded-lg border border-amber-200 bg-amber-50 p-4">
+      <div className="flex items-start gap-3">
+        <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0 text-amber-600" />
+        <div className="text-sm leading-relaxed text-amber-900">
+          <p className="font-medium">Keep your API key safe!</p>
+          <p className="mt-1 text-amber-800">
+            Never commit your API key to code or share it publicly. Vercel
+            environment variables are encrypted and kept secure — that&apos;s
+            why we add it there instead of putting it in the code.
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function CongratsBanner() {
+  return (
+    <div className="mt-2 rounded-lg border border-emerald-200 bg-gradient-to-r from-emerald-50 to-teal-50 p-4">
+      <div className="flex items-start gap-3">
+        <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-emerald-100">
+          <PartyPopper className="h-4 w-4 text-emerald-600" />
+        </div>
+        <div className="text-sm leading-relaxed text-emerald-900">
+          <p className="font-semibold">You did it!</p>
+          <p className="mt-1 text-emerald-800">
+            You just built and deployed a full AI-powered web application.
+            Share the link with friends, classmates, or use it for actual
+            interview prep. What you built today would have taken a team
+            of developers weeks to create. Welcome to the future of building
+            with AI.
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+const steps: TrackStep[] = [
+  {
+    title: "Get your Anthropic API key",
+    description:
+      'Your app needs an API key to talk to Claude. Go to console.anthropic.com, navigate to "API Keys", and click "Create Key". Copy the key — you\'ll need it in a moment.',
+    illustration: (
+      <>
+        <AnthropicAPIKeyIllustration />
+        <APIKeyWarning />
+      </>
+    ),
+  },
+  {
+    title: "Go to Vercel and import your project",
+    description:
+      'Visit vercel.com/new, sign in with your GitHub account, and find the repository you just created. Click "Import" to start the deployment setup.',
+    illustration: <VercelDeployIllustration />,
+  },
+  {
+    title: "Add your API key as an environment variable",
+    description:
+      'Before deploying, expand the "Environment Variables" section. Add a new variable with the name ANTHROPIC_API_KEY and paste your API key as the value. This keeps your key secure — it\'s stored encrypted on Vercel\'s servers, not in your code.',
+  },
+  {
+    title: "Deploy!",
+    description:
+      'Click "Deploy" and watch Vercel build and deploy your app. This usually takes 1–2 minutes. Once it\'s done, you\'ll get a live URL like interview-simulator.vercel.app.',
+  },
+  {
+    title: "Visit your live app",
+    description:
+      "Click the URL and try your interview simulator in production! Generate a question, write an answer, and get AI feedback — all running on the live web.",
+    illustration: <CongratsBanner />,
+  },
+];
+
+export default function DeployPage() {
+  return (
+    <TrackSection
+      trackId="mock-interview"
+      sectionIndex={3}
+      accentClass="track-3"
+      sectionTitle="Deploy on Vercel"
+      sectionDescription="Deploy your interview app to the web with Vercel and set up your API key."
+      steps={steps}
+      stepIndexOffset={getSectionOffset(3)}
+      isLastSection
+      introContent={<DeployIntro />}
+    />
+  );
+}
