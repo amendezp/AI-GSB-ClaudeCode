@@ -41,9 +41,9 @@ export default function TracksPage() {
           Pick a Track
         </h1>
         <p className="mx-auto max-w-2xl text-lg text-muted-foreground">
-          Choose one of three hands-on tracks based on your interest and comfort
-          level. Each track will guide you through building something real with
-          Claude Code.
+          Start with any track and work your way through all three by the end of
+          the workshop. Each is a self-contained mini-project that builds
+          something real with Claude Code.
         </p>
       </div>
       <TrackGrid />

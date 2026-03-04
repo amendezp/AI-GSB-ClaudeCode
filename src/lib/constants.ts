@@ -53,7 +53,7 @@ export const CONCEPTS: Concept[] = [
   {
     term: "Claude Code",
     definition:
-      "A feature inside the Claude Desktop app that lets Claude write, edit, and run code on your computer. You describe what you want in plain English, and Claude builds it for you.",
+      "A highly agentic coding assistant by Anthropic. It can read your files, write code, run commands, and build entire projects on your computer. You describe what you want in plain English, and Claude builds it for you.",
     analogy:
       "Think of it as having a software engineer sitting next to you who can actually touch your keyboard.",
     icon: "Terminal",

@@ -6,6 +6,7 @@ import { PageContainer } from "@/components/layout/page-container";
 import { SectionBlock } from "@/components/cheat-sheet/section-block";
 import { ComparisonTable } from "@/components/cheat-sheet/comparison-table";
 import { ConceptDirectory } from "@/components/cheat-sheet/concept-directory";
+import { InterfaceGuide } from "@/components/cheat-sheet/interface-guide";
 import { useWorkshopStore } from "@/store/workshop-store";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, BookOpen } from "lucide-react";
@@ -17,7 +18,6 @@ export default function CheatSheetPage() {
     setCurrentStep(1);
   }, [setCurrentStep]);
 
-  // Gate: redirect if not registered
   if (!isRegistered) {
     return (
       <PageContainer>
@@ -54,16 +54,20 @@ export default function CheatSheetPage() {
       <SectionBlock title="What is Claude Code?">
         <div className="rounded-lg border bg-card p-5">
           <p className="leading-relaxed text-muted-foreground">
-            Claude Code is a feature inside the{" "}
-            <strong className="text-foreground">Claude Desktop app</strong> that
-            turns Claude into a hands-on coding partner. Instead of just chatting
-            about code, Claude can actually{" "}
+            Claude Code is a{" "}
+            <strong className="text-foreground">
+              highly agentic coding assistant
+            </strong>{" "}
+            built by Anthropic. It&apos;s not just a chatbot that talks about
+            code — it can actually{" "}
             <strong className="text-foreground">
               read your files, write code, run commands, and build entire
               projects
             </strong>{" "}
             on your computer. You describe what you want in plain English, and
-            Claude does the rest.
+            Claude does the rest. Today we&apos;ll use it through the{" "}
+            <strong className="text-foreground">Claude Desktop app</strong>,
+            which provides a visual interface for Claude Code.
           </p>
         </div>
       </SectionBlock>
@@ -94,7 +98,9 @@ export default function CheatSheetPage() {
             <li className="flex gap-2">
               <span className="mt-1 text-primary">&#x2022;</span>
               <span>
-                <strong className="text-foreground">True agentic behavior</strong>{" "}
+                <strong className="text-foreground">
+                  True agentic behavior
+                </strong>{" "}
                 — it doesn&apos;t just suggest code snippets. It plans, executes,
                 tests, and debugs autonomously.
               </span>
@@ -122,6 +128,138 @@ export default function CheatSheetPage() {
         </div>
       </SectionBlock>
 
+      {/* Know Your Interface */}
+      <SectionBlock
+        title="Know Your Interface"
+        subtitle="Here's what the Claude Code chatbox looks like and where to find everything"
+      >
+        <InterfaceGuide />
+      </SectionBlock>
+
+      {/* Modes */}
+      <SectionBlock
+        title="Permission Modes"
+        subtitle="Control how much freedom Claude has when making changes"
+      >
+        <div className="space-y-3">
+          {[
+            {
+              name: "Ask permissions",
+              badge: "Default",
+              desc: "Claude asks for your approval before every action — editing files, running commands, etc. Best for learning and understanding what Claude does.",
+              color: "bg-blue-100 text-blue-800",
+            },
+            {
+              name: "Plan mode",
+              badge: "Research first",
+              desc: "Claude researches and creates a detailed plan before writing any code. You review and approve the plan, then Claude executes. Great for complex tasks.",
+              color: "bg-purple-100 text-purple-800",
+            },
+            {
+              name: "Accept all",
+              badge: "Full auto",
+              desc: "Claude acts autonomously — edits files, runs commands, and iterates without asking. Fast, but use with caution. Best once you're comfortable with Claude Code.",
+              color: "bg-amber-100 text-amber-800",
+            },
+          ].map((mode) => (
+            <div
+              key={mode.name}
+              className="flex gap-4 rounded-lg border bg-card p-4"
+            >
+              <div className="shrink-0">
+                <span
+                  className={`inline-block rounded-md px-2 py-1 text-[10px] font-semibold ${mode.color}`}
+                >
+                  {mode.badge}
+                </span>
+              </div>
+              <div>
+                <p className="font-medium text-foreground">{mode.name}</p>
+                <p className="text-sm text-muted-foreground">{mode.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </SectionBlock>
+
+      {/* Models */}
+      <SectionBlock
+        title="Models"
+        subtitle="Choose the right brain for the job"
+      >
+        <div className="rounded-lg border bg-card p-5">
+          <p className="mb-3 text-sm leading-relaxed text-muted-foreground">
+            You can switch between different Claude models using the{" "}
+            <strong className="text-foreground">model selector</strong> in the
+            chatbox. Each model has different strengths:
+          </p>
+          <div className="space-y-2">
+            {[
+              {
+                model: "Opus 4.6",
+                desc: "Most capable. Best for complex coding, architecture decisions, and multi-file changes.",
+                tag: "We use this today",
+              },
+              {
+                model: "Sonnet 4.6",
+                desc: "Fast and capable. Great balance of speed and quality for everyday tasks.",
+                tag: null,
+              },
+              {
+                model: "Haiku 4.5",
+                desc: "Fastest. Best for quick questions, simple edits, and when speed matters most.",
+                tag: null,
+              },
+            ].map((m) => (
+              <div key={m.model} className="flex items-start gap-3 text-sm">
+                <span className="shrink-0 font-mono font-semibold text-foreground">
+                  {m.model}
+                </span>
+                <span className="text-muted-foreground">— {m.desc}</span>
+                {m.tag && (
+                  <span className="shrink-0 rounded-md bg-primary/10 px-2 py-0.5 text-[10px] font-semibold text-primary">
+                    {m.tag}
+                  </span>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      </SectionBlock>
+
+      {/* Environments & Worktrees */}
+      <SectionBlock
+        title="Environments & Worktrees"
+        subtitle="Where your code runs and how to work safely"
+      >
+        <div className="space-y-3">
+          <div className="rounded-lg border bg-card p-4">
+            <p className="mb-1 font-medium text-foreground">Environments</p>
+            <p className="text-sm text-muted-foreground">
+              The{" "}
+              <strong className="text-foreground">environment selector</strong>{" "}
+              tells Claude where to run your code.{" "}
+              <strong className="text-foreground">Local</strong> means Claude
+              works directly on your computer&apos;s files. You&apos;ll also see
+              options like SSH for remote servers — but for today, we&apos;ll
+              stick with <strong className="text-foreground">Local</strong>.
+            </p>
+          </div>
+          <div className="rounded-lg border bg-card p-4">
+            <p className="mb-1 font-medium text-foreground">Worktrees</p>
+            <p className="text-sm text-muted-foreground">
+              A <strong className="text-foreground">worktree</strong> creates an
+              isolated copy of your project so Claude can experiment without
+              affecting your main code. Think of it as a sandbox — if something
+              goes wrong, your original project is untouched. Toggle it on with
+              the{" "}
+              <strong className="text-foreground">worktree checkbox</strong> in
+              the chatbox when you want to try something risky.
+            </p>
+          </div>
+        </div>
+      </SectionBlock>
+
       {/* How to use it */}
       <SectionBlock
         title="How to Use It"
@@ -137,8 +275,8 @@ export default function CheatSheetPage() {
               },
               {
                 step: "2",
-                title: 'Select a project folder',
-                desc: 'Click the folder icon to point Claude at the directory you want to work in.',
+                title: "Select a project folder",
+                desc: "Click the folder icon to point Claude at the directory you want to work in.",
               },
               {
                 step: "3",
@@ -173,7 +311,7 @@ export default function CheatSheetPage() {
       {/* Desktop vs CLI */}
       <SectionBlock
         title="Desktop App vs CLI"
-        subtitle="Same power, different interface. We're using the Desktop app today."
+        subtitle={'Same power, different interface. CLI stands for "Command Line Interface" — a text-only terminal window. We\'re using the Desktop app today.'}
       >
         <ComparisonTable />
       </SectionBlock>
