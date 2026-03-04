@@ -1,0 +1,62 @@
+"use client";
+
+import { Globe } from "lucide-react";
+import { PageContainer } from "@/components/layout/page-container";
+import { SectionProgress } from "@/components/tracks/section-progress";
+import { CHROME_NAVIGATION_SECTIONS } from "@/lib/chrome-navigation-sections";
+
+export default function ChromeNavigationLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <PageContainer>
+      {/* Track header */}
+      <div className="text-center">
+        <div
+          className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl"
+          style={{
+            backgroundColor: `color-mix(in oklch, var(--color-track-2) 15%, transparent)`,
+            color: `var(--color-track-2)`,
+          }}
+        >
+          <Globe className="h-7 w-7" />
+        </div>
+        <div className="mb-2 text-sm font-medium text-muted-foreground">
+          Track 2
+        </div>
+        <h1 className="mb-3 font-serif text-3xl font-bold tracking-tight text-foreground">
+          Chrome Navigation
+        </h1>
+        <p className="mx-auto mb-4 max-w-lg text-muted-foreground">
+          Set up Claude&apos;s memory with your career data, then let it browse
+          Chrome to create documents and research on your behalf.
+        </p>
+        <div className="inline-flex items-center gap-3 text-xs text-muted-foreground">
+          <span
+            className="rounded-full px-2.5 py-1 font-medium"
+            style={{
+              backgroundColor: `color-mix(in oklch, var(--color-track-2) 12%, transparent)`,
+              color: `var(--color-track-2)`,
+            }}
+          >
+            Intermediate
+          </span>
+          <span>~5 min</span>
+        </div>
+      </div>
+
+      {/* Section progress */}
+      <div className="mt-6">
+        <SectionProgress
+          sections={CHROME_NAVIGATION_SECTIONS}
+          accentClass="track-2"
+        />
+      </div>
+
+      {/* Section content */}
+      <div className="mt-8">{children}</div>
+    </PageContainer>
+  );
+}

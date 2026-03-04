@@ -1,16 +1,12 @@
 "use client";
 
-import { PageContainer } from "@/components/layout/page-container";
-import { TrackPlaceholder } from "@/components/tracks/track-placeholder";
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 export default function ChromeNavigationTrackPage() {
-  return (
-    <PageContainer>
-      <TrackPlaceholder
-        trackNumber={2}
-        trackTitle="Chrome Navigation"
-        accentClass="track-2"
-      />
-    </PageContainer>
-  );
+  const router = useRouter();
+  useEffect(() => {
+    router.replace("/tracks/chrome-navigation/memory");
+  }, [router]);
+  return null;
 }
