@@ -135,7 +135,7 @@ export const TRACKS: Track[] = [
     description:
       "Let Claude browse the web for you — interact with Chrome, extract data, and create spreadsheets. Experience AI as your browser co-pilot.",
     difficulty: "Intermediate",
-    estimatedTime: "~5 min",
+    estimatedTime: "~10 min",
     href: "/tracks/chrome-navigation",
     accentClass: "track-2",
     icon: "Globe",

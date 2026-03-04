@@ -43,7 +43,7 @@ export default function ChromeNavigationLayout({
           >
             Intermediate
           </span>
-          <span>~5 min</span>
+          <span>~10 min</span>
         </div>
       </div>
 
