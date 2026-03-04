@@ -14,7 +14,7 @@ export function WelcomeHero() {
       </h1>
       <p className="mx-auto max-w-2xl text-lg leading-relaxed text-muted-foreground">
         Today you&apos;ll learn to use Claude Code — your AI coding partner — to
-        build real projects from scratch. No prior coding experience needed.
+        build real prototypes from scratch. No prior coding experience needed.
         Let&apos;s make sure you&apos;re all set up before we begin.
       </p>
     </div>
