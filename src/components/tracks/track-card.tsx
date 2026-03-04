@@ -1,8 +1,11 @@
+"use client";
+
 import Link from "next/link";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, BarChart3, Globe, Rocket, Clock } from "lucide-react";
+import { ArrowRight, BarChart3, Globe, Rocket, Clock, CircleCheck } from "lucide-react";
+import { useWorkshopStore } from "@/store/workshop-store";
 import type { Track } from "@/types";
 
 const iconMap: Record<string, React.ElementType> = {
@@ -17,6 +20,8 @@ interface TrackCardProps {
 
 export function TrackCard({ track }: TrackCardProps) {
   const Icon = iconMap[track.icon] || BarChart3;
+  const { completedTracks } = useWorkshopStore();
+  const isComplete = completedTracks.includes(track.id);
 
   const difficultyColor = {
     Beginner: "bg-green-100 text-green-800",
@@ -25,20 +30,34 @@ export function TrackCard({ track }: TrackCardProps) {
   }[track.difficulty];
 
   return (
-    <Card className="group flex flex-col transition-all hover:shadow-lg">
+    <Card
+      className={`group flex flex-col transition-all hover:shadow-lg ${
+        isComplete ? "border-green-200 bg-green-50/30" : ""
+      }`}
+    >
       <CardContent className="flex flex-1 flex-col p-6">
         {/* Header */}
         <div className="mb-4 flex items-start justify-between">
           <div
-            className="flex h-12 w-12 items-center justify-center rounded-xl"
-            style={{
-              backgroundColor: `color-mix(in oklch, var(--color-${track.accentClass}) 15%, transparent)`,
-            }}
+            className={`flex h-12 w-12 items-center justify-center rounded-xl ${
+              isComplete ? "bg-green-100" : ""
+            }`}
+            style={
+              !isComplete
+                ? {
+                    backgroundColor: `color-mix(in oklch, var(--color-${track.accentClass}) 15%, transparent)`,
+                  }
+                : undefined
+            }
           >
-            <Icon
-              className="h-6 w-6"
-              style={{ color: `var(--color-${track.accentClass})` }}
-            />
+            {isComplete ? (
+              <CircleCheck className="h-6 w-6 text-green-600" />
+            ) : (
+              <Icon
+                className="h-6 w-6"
+                style={{ color: `var(--color-${track.accentClass})` }}
+              />
+            )}
           </div>
           <span className="flex h-8 w-8 items-center justify-center rounded-full bg-muted text-sm font-bold text-muted-foreground">
             {track.number}
@@ -68,10 +87,20 @@ export function TrackCard({ track }: TrackCardProps) {
 
         {/* CTA */}
         <Link href={track.href} className="block">
-          <Button className="w-full gap-2 group-hover:gap-3 transition-all">
-            Start Track
-            <ArrowRight className="h-4 w-4" />
-          </Button>
+          {isComplete ? (
+            <Button
+              variant="outline"
+              className="w-full gap-2 border-green-200 text-green-700 hover:bg-green-50"
+            >
+              <CircleCheck className="h-4 w-4" />
+              Completed
+            </Button>
+          ) : (
+            <Button className="w-full gap-2 group-hover:gap-3 transition-all">
+              Start Track
+              <ArrowRight className="h-4 w-4" />
+            </Button>
+          )}
         </Link>
       </CardContent>
     </Card>

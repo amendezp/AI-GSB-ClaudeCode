@@ -27,6 +27,11 @@ interface WorkshopState {
   toggleStep: (trackId: string, stepIndex: number) => void;
   isStepComplete: (trackId: string, stepIndex: number) => boolean;
 
+  // Track-level completion
+  completedTracks: string[];
+  completeTrack: (trackId: string) => void;
+  isTrackComplete: (trackId: string) => boolean;
+
   // Reset
   reset: () => void;
 }
@@ -70,6 +75,17 @@ export const useWorkshopStore = create<WorkshopState>()(
         return get().completedSteps.includes(key);
       },
 
+      completedTracks: [],
+      completeTrack: (trackId: string) =>
+        set((state) => ({
+          completedTracks: state.completedTracks.includes(trackId)
+            ? state.completedTracks
+            : [...state.completedTracks, trackId],
+        })),
+      isTrackComplete: (trackId: string) => {
+        return get().completedTracks.includes(trackId);
+      },
+
       reset: () =>
         set({
           completedItems: [],
@@ -78,6 +94,7 @@ export const useWorkshopStore = create<WorkshopState>()(
           currentStep: 0 as WorkshopStep,
           selectedTrack: null,
           completedSteps: [],
+          completedTracks: [],
         }),
     }),
     {

@@ -2,8 +2,9 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, Check, Copy, CircleCheck, Circle } from "lucide-react";
+import { ArrowLeft, Check, Copy, CircleCheck, Circle, PartyPopper } from "lucide-react";
 import { useWorkshopStore } from "@/store/workshop-store";
 
 export interface TrackStep {
@@ -64,12 +65,19 @@ export function TrackSteps({
   steps,
   icon,
 }: TrackStepsProps) {
-  const { completedSteps, toggleStep } = useWorkshopStore();
+  const router = useRouter();
+  const { completedSteps, toggleStep, completedTracks, completeTrack } =
+    useWorkshopStore();
 
   const completedCount = steps.filter((_, i) =>
     completedSteps.includes(`${trackId}-${i}`)
   ).length;
-  const allDone = completedCount === steps.length;
+  const trackComplete = completedTracks.includes(trackId);
+
+  const handleMarkTrackComplete = () => {
+    completeTrack(trackId);
+    router.push("/tracks");
+  };
 
   return (
     <div className="space-y-8">
@@ -185,26 +193,47 @@ export function TrackSteps({
         })}
       </div>
 
-      {/* Completion banner */}
-      {allDone && (
-        <div className="mx-auto max-w-2xl rounded-lg border border-green-200 bg-green-50 p-6 text-center">
-          <p className="text-lg font-semibold text-green-800">
-            🎉 Track complete!
-          </p>
-          <p className="mt-1 text-sm text-green-700">
-            Great job — head back and try the next track.
-          </p>
-        </div>
-      )}
-
-      {/* Back button */}
-      <div className="text-center">
-        <Link href="/tracks">
-          <Button variant="outline" className="gap-2">
-            <ArrowLeft className="h-4 w-4" />
-            Back to Track Selection
-          </Button>
-        </Link>
+      {/* Mark as Complete / Back */}
+      <div className="mx-auto max-w-2xl space-y-4">
+        {trackComplete ? (
+          <div className="rounded-lg border border-green-200 bg-green-50 p-6 text-center">
+            <PartyPopper className="mx-auto mb-2 h-8 w-8 text-green-600" />
+            <p className="text-lg font-semibold text-green-800">
+              Track complete!
+            </p>
+            <p className="mt-1 text-sm text-green-700">
+              Great job — head back and try the next track.
+            </p>
+            <Link href="/tracks">
+              <Button variant="outline" className="mt-4 gap-2">
+                <ArrowLeft className="h-4 w-4" />
+                Back to Track Selection
+              </Button>
+            </Link>
+          </div>
+        ) : (
+          <div className="space-y-3 text-center">
+            <button
+              type="button"
+              className="inline-flex items-center gap-2 rounded-lg px-6 py-3 text-sm font-medium text-white shadow-sm transition-colors hover:opacity-90"
+              style={{
+                backgroundColor: `var(--color-${accentClass})`,
+              }}
+              onClick={handleMarkTrackComplete}
+            >
+              <CircleCheck className="h-5 w-5" />
+              Mark as Complete
+            </button>
+            <div>
+              <Link href="/tracks">
+                <Button variant="ghost" size="sm" className="gap-2 text-muted-foreground">
+                  <ArrowLeft className="h-4 w-4" />
+                  Back to Track Selection
+                </Button>
+              </Link>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
