@@ -17,7 +17,7 @@ export const MOCK_INTERVIEW_SECTIONS: Section[] = [
     shortTitle: "Build",
     href: "/tracks/mock-interview/build",
     estimatedTime: "~10 min",
-    stepCount: 4,
+    stepCount: 3,
   },
   {
     id: "github",

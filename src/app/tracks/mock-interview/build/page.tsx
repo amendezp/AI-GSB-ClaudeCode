@@ -66,11 +66,6 @@ const steps: TrackStep[] = [
       'Once you\'re happy with the plan, approve it. Claude will switch to implementation mode and start writing code. This may take a few minutes — it\'s building an entire web app! If Claude keeps asking for permission at each step, switch to "Auto accept edits" to let it flow.',
     illustration: <BuildWowCallout />,
   },
-  {
-    title: "Test your app locally",
-    description:
-      "Once Claude finishes, it will likely start a dev server. Open the URL it provides (usually http://localhost:3000) and try it out! Generate a question, write an answer, and see the AI feedback in action. If something doesn't work, just tell Claude what's wrong and it will fix it.",
-  },
 ];
 
 export default function BuildPage() {
