@@ -22,6 +22,11 @@ interface WorkshopState {
   selectedTrack: string | null;
   setSelectedTrack: (id: string) => void;
 
+  // Track step completion (keyed by "trackId-stepIndex")
+  completedSteps: string[];
+  toggleStep: (trackId: string, stepIndex: number) => void;
+  isStepComplete: (trackId: string, stepIndex: number) => boolean;
+
   // Reset
   reset: () => void;
 }
@@ -50,6 +55,21 @@ export const useWorkshopStore = create<WorkshopState>()(
       selectedTrack: null,
       setSelectedTrack: (id: string) => set({ selectedTrack: id }),
 
+      completedSteps: [],
+      toggleStep: (trackId: string, stepIndex: number) =>
+        set((state) => {
+          const key = `${trackId}-${stepIndex}`;
+          return {
+            completedSteps: state.completedSteps.includes(key)
+              ? state.completedSteps.filter((s) => s !== key)
+              : [...state.completedSteps, key],
+          };
+        }),
+      isStepComplete: (trackId: string, stepIndex: number) => {
+        const key = `${trackId}-${stepIndex}`;
+        return get().completedSteps.includes(key);
+      },
+
       reset: () =>
         set({
           completedItems: [],
@@ -57,6 +77,7 @@ export const useWorkshopStore = create<WorkshopState>()(
           isRegistered: false,
           currentStep: 0 as WorkshopStep,
           selectedTrack: null,
+          completedSteps: [],
         }),
     }),
     {

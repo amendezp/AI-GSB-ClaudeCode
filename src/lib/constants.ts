@@ -123,7 +123,7 @@ export const TRACKS: Track[] = [
     description:
       "Use Claude Code to create a beautiful, interactive data visualization from scratch. Perfect for seeing the magic of AI-assisted coding for the first time.",
     difficulty: "Beginner",
-    estimatedTime: "~30 min",
+    estimatedTime: "~1 min",
     href: "/tracks/visualization",
     accentClass: "track-1",
     icon: "BarChart3",
@@ -135,7 +135,7 @@ export const TRACKS: Track[] = [
     description:
       "Let Claude browse the web for you — interact with Chrome, extract data, and create spreadsheets. Experience AI as your browser co-pilot.",
     difficulty: "Intermediate",
-    estimatedTime: "~30 min",
+    estimatedTime: "~5 min",
     href: "/tracks/chrome-navigation",
     accentClass: "track-2",
     icon: "Globe",
@@ -147,7 +147,7 @@ export const TRACKS: Track[] = [
     description:
       "Build and deploy a full AI-powered interview prep tool using Claude, GitHub, and Vercel. Go from zero to a live web app.",
     difficulty: "Advanced",
-    estimatedTime: "~45 min",
+    estimatedTime: "~20 min",
     href: "/tracks/mock-interview",
     accentClass: "track-3",
     icon: "Rocket",

@@ -3,15 +3,18 @@
 import { useState } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, Check, Copy } from "lucide-react";
+import { ArrowLeft, Check, Copy, CircleCheck, Circle } from "lucide-react";
+import { useWorkshopStore } from "@/store/workshop-store";
 
 export interface TrackStep {
   title: string;
   description?: string;
   prompt?: string;
+  illustration?: React.ReactNode;
 }
 
 interface TrackStepsProps {
+  trackId: string;
   trackNumber: number;
   trackTitle: string;
   trackDescription: string;
@@ -51,6 +54,7 @@ function PromptBlock({ prompt }: { prompt: string }) {
 }
 
 export function TrackSteps({
+  trackId,
   trackNumber,
   trackTitle,
   trackDescription,
@@ -60,6 +64,13 @@ export function TrackSteps({
   steps,
   icon,
 }: TrackStepsProps) {
+  const { completedSteps, toggleStep } = useWorkshopStore();
+
+  const completedCount = steps.filter((_, i) =>
+    completedSteps.includes(`${trackId}-${i}`)
+  ).length;
+  const allDone = completedCount === steps.length;
+
   return (
     <div className="space-y-8">
       {/* Header */}
@@ -93,36 +104,98 @@ export function TrackSteps({
             {difficulty}
           </span>
           <span>{estimatedTime}</span>
+          <span className="text-muted-foreground/60">·</span>
+          <span>
+            {completedCount}/{steps.length} steps done
+          </span>
         </div>
       </div>
 
       {/* Steps */}
       <div className="mx-auto max-w-2xl space-y-3">
-        {steps.map((step, i) => (
-          <div
-            key={i}
-            className="flex gap-4 rounded-lg border bg-card p-4"
-          >
+        {steps.map((step, i) => {
+          const isComplete = completedSteps.includes(`${trackId}-${i}`);
+          return (
             <div
-              className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-sm font-bold text-white"
-              style={{
-                backgroundColor: `var(--color-${accentClass})`,
-              }}
+              key={i}
+              className={`rounded-lg border bg-card p-4 transition-colors ${
+                isComplete ? "border-green-200 bg-green-50/50" : ""
+              }`}
             >
-              {i + 1}
+              <div className="flex gap-4">
+                <div
+                  className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-sm font-bold text-white transition-colors ${
+                    isComplete ? "bg-green-500" : ""
+                  }`}
+                  style={
+                    !isComplete
+                      ? { backgroundColor: `var(--color-${accentClass})` }
+                      : undefined
+                  }
+                >
+                  {isComplete ? <Check className="h-4 w-4" /> : i + 1}
+                </div>
+                <div className="flex-1">
+                  <p
+                    className={`font-medium ${
+                      isComplete
+                        ? "text-green-700 line-through decoration-green-300"
+                        : "text-foreground"
+                    }`}
+                  >
+                    {step.title}
+                  </p>
+                  {step.description && (
+                    <p className="mt-0.5 text-sm text-muted-foreground">
+                      {step.description}
+                    </p>
+                  )}
+                  {step.prompt && <PromptBlock prompt={step.prompt} />}
+                  {step.illustration && (
+                    <div className="mt-3">{step.illustration}</div>
+                  )}
+                </div>
+              </div>
+              {/* Completion checkbox */}
+              <div className="mt-3 flex justify-end">
+                <button
+                  type="button"
+                  onClick={() => toggleStep(trackId, i)}
+                  className={`inline-flex items-center gap-1.5 rounded-md px-3 py-1.5 text-xs font-medium transition-colors ${
+                    isComplete
+                      ? "bg-green-100 text-green-700 hover:bg-green-200"
+                      : "bg-muted text-muted-foreground hover:bg-muted/80"
+                  }`}
+                >
+                  {isComplete ? (
+                    <>
+                      <CircleCheck className="h-3.5 w-3.5" />
+                      Done!
+                    </>
+                  ) : (
+                    <>
+                      <Circle className="h-3.5 w-3.5" />
+                      Mark complete
+                    </>
+                  )}
+                </button>
+              </div>
             </div>
-            <div className="flex-1">
-              <p className="font-medium text-foreground">{step.title}</p>
-              {step.description && (
-                <p className="mt-0.5 text-sm text-muted-foreground">
-                  {step.description}
-                </p>
-              )}
-              {step.prompt && <PromptBlock prompt={step.prompt} />}
-            </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
+
+      {/* Completion banner */}
+      {allDone && (
+        <div className="mx-auto max-w-2xl rounded-lg border border-green-200 bg-green-50 p-6 text-center">
+          <p className="text-lg font-semibold text-green-800">
+            🎉 Track complete!
+          </p>
+          <p className="mt-1 text-sm text-green-700">
+            Great job — head back and try the next track.
+          </p>
+        </div>
+      )}
 
       {/* Back button */}
       <div className="text-center">
