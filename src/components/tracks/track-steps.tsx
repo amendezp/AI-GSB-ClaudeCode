@@ -38,6 +38,9 @@ function PromptBlock({ prompt }: { prompt: string }) {
   return (
     <div className="mt-2 group relative rounded-lg border bg-[#2a2a2a] px-4 py-3">
       <p className="pr-10 font-mono text-sm text-white/90">{prompt}</p>
+      <p className="mt-2 text-xs italic text-white/40">
+        (Feel free to adjust as needed. Play around and don&apos;t be shy!)
+      </p>
       <button
         type="button"
         onClick={handleCopy}
