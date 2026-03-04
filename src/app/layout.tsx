@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Source_Serif_4 } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
@@ -44,6 +45,7 @@ export default function RootLayout({
             <Footer />
           </div>
         </TooltipProvider>
+        <Analytics />
       </body>
     </html>
   );
