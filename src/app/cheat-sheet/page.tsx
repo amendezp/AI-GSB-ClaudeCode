@@ -380,9 +380,9 @@ export default function CheatSheetPage() {
 
       {/* Continue button */}
       <div className="mt-12 text-center">
-        <Link href="/tracks">
+        <Link href="/lessons">
           <Button size="lg" className="gap-2">
-            Choose Your Track
+            Continue
             <ArrowRight className="h-4 w-4" />
           </Button>
         </Link>
