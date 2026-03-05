@@ -65,9 +65,11 @@ export default function CheatSheetPage() {
               projects
             </strong>{" "}
             on your computer. You describe what you want in plain English, and
-            Claude does the rest. Today we&apos;ll use it through the{" "}
+            Claude does the rest. Under the hood, Claude Code is fundamentally a{" "}
+            <strong className="text-foreground">CLI (command line interface)</strong>
+            , but for the sake of simplicity, today we&apos;ll use it through the{" "}
             <strong className="text-foreground">Claude Desktop app</strong>,
-            which provides a visual interface for Claude Code.
+            which wraps it in a friendly visual interface.
           </p>
         </div>
       </SectionBlock>
