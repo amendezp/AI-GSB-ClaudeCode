@@ -63,7 +63,7 @@ const steps: TrackStep[] = [
   {
     title: "Send this prompt to Claude",
     prompt:
-      "Use my Chrome browser to create a new Google Doc writing a cover letter for why I want to work at Anthropic. Use specific examples from my career background in the CLAUDE.md file.",
+      "Help me draft a cover letter for why I want to work at Anthropic. Open Chrome, create a new Google Doc, and write a draft using specific examples from my career background in the CLAUDE.md file.",
   },
   {
     title: "Sit back and watch the magic happen",
