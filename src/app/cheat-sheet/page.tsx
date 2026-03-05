@@ -9,7 +9,7 @@ import { ConceptDirectory } from "@/components/cheat-sheet/concept-directory";
 import { InterfaceGuide } from "@/components/cheat-sheet/interface-guide";
 import { useWorkshopStore } from "@/store/workshop-store";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, BookOpen } from "lucide-react";
+import { ArrowRight, BookOpen, Printer, ExternalLink } from "lucide-react";
 
 export default function CheatSheetPage() {
   const { setCurrentStep, isRegistered } = useWorkshopStore();
@@ -48,6 +48,15 @@ export default function CheatSheetPage() {
           Everything you need to know to sound smart at dinner — and actually use
           it today.
         </p>
+        <Button
+          variant="outline"
+          size="sm"
+          className="mt-4 gap-2"
+          onClick={() => window.print()}
+        >
+          <Printer className="h-4 w-4" />
+          Print / Save as PDF
+        </Button>
       </div>
 
       {/* What is Claude Code */}
@@ -326,6 +335,47 @@ export default function CheatSheetPage() {
         subtitle="Your glossary of terms you'll encounter today"
       >
         <ConceptDirectory />
+      </SectionBlock>
+
+      {/* Learn More */}
+      <SectionBlock
+        title="Want to Learn More?"
+        subtitle="Keep exploring Claude Code after today's session"
+      >
+        <div className="rounded-lg border bg-card p-5">
+          <ul className="space-y-3 text-sm text-muted-foreground">
+            <li className="flex items-start gap-2">
+              <ExternalLink className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
+              <span>
+                <a
+                  href="https://www.deeplearning.ai/short-courses/claude-code/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-medium text-primary underline underline-offset-2 hover:text-primary/80"
+                >
+                  DeepLearning.AI — Claude Code Short Course
+                </a>{" "}
+                — A free, hands-on course that walks you through building with
+                Claude Code step by step.
+              </span>
+            </li>
+            <li className="flex items-start gap-2">
+              <ExternalLink className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
+              <span>
+                <a
+                  href="https://docs.anthropic.com/en/docs/claude-code"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-medium text-primary underline underline-offset-2 hover:text-primary/80"
+                >
+                  Claude Code Documentation
+                </a>{" "}
+                — Official Anthropic docs covering setup, configuration, and
+                advanced features.
+              </span>
+            </li>
+          </ul>
+        </div>
       </SectionBlock>
 
       {/* Continue button */}
