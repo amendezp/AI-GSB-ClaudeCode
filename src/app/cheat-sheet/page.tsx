@@ -81,10 +81,12 @@ export default function CheatSheetPage() {
       >
         <div className="rounded-lg border bg-card p-5">
           <p className="mb-3 leading-relaxed text-muted-foreground">
-            With the latest{" "}
-            <strong className="text-foreground">Claude Opus</strong> update,
-            Claude Code went from &quot;interesting demo&quot; to &quot;genuinely
-            useful tool.&quot; Here&apos;s what changed:
+            With the{" "}
+            <strong className="text-foreground">Claude Opus 4</strong> release
+            in June 2025 — and the even more capable{" "}
+            <strong className="text-foreground">Opus 4.5</strong> following in
+            February 2026 — Claude Code went from &quot;interesting demo&quot;
+            to &quot;genuinely useful tool.&quot; Here&apos;s what changed:
           </p>
           <ul className="space-y-2 text-sm text-muted-foreground">
             <li className="flex gap-2">
