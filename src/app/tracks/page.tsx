@@ -6,7 +6,7 @@ import { PageContainer } from "@/components/layout/page-container";
 import { TrackGrid } from "@/components/tracks/track-grid";
 import { useWorkshopStore } from "@/store/workshop-store";
 import { Button } from "@/components/ui/button";
-import { Compass, MessageSquareHeart } from "lucide-react";
+import { Compass, MessageSquareHeart, FileDown } from "lucide-react";
 
 export default function TracksPage() {
   const { setCurrentStep, isRegistered } = useWorkshopStore();
@@ -48,9 +48,27 @@ export default function TracksPage() {
       </div>
       <TrackGrid />
 
-      {/* Feedback */}
-      <div className="mt-16 text-center">
-        <div className="mx-auto max-w-md rounded-xl border bg-gradient-to-r from-primary/5 to-primary/10 p-8">
+      {/* Handout & Feedback */}
+      <div className="mt-16 flex flex-col items-center gap-6 sm:flex-row sm:justify-center">
+        {/* Handout */}
+        <div className="w-full max-w-xs rounded-xl border bg-gradient-to-r from-muted/50 to-muted/30 p-6 text-center">
+          <FileDown className="mx-auto mb-3 h-8 w-8 text-muted-foreground" />
+          <h3 className="font-serif text-lg font-semibold text-foreground">
+            Workshop Handout
+          </h3>
+          <p className="mt-1 text-sm text-muted-foreground">
+            Cheat sheet, glossary, and key lessons — all on two printable pages.
+          </p>
+          <a href="/handout.html" target="_blank" rel="noopener noreferrer">
+            <Button variant="outline" className="mt-4 gap-2">
+              <FileDown className="h-4 w-4" />
+              Open Handout
+            </Button>
+          </a>
+        </div>
+
+        {/* Feedback */}
+        <div className="w-full max-w-xs rounded-xl border bg-gradient-to-r from-primary/5 to-primary/10 p-6 text-center">
           <MessageSquareHeart className="mx-auto mb-3 h-8 w-8 text-primary" />
           <h3 className="font-serif text-lg font-semibold text-foreground">
             Feedback is a gift

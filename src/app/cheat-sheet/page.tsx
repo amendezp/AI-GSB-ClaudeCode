@@ -48,15 +48,23 @@ export default function CheatSheetPage() {
           Everything you need to know to sound smart at dinner — and actually use
           it today.
         </p>
-        <Button
-          variant="outline"
-          size="sm"
-          className="mt-4 gap-2"
-          onClick={() => window.print()}
-        >
-          <Printer className="h-4 w-4" />
-          Print / Save as PDF
-        </Button>
+        <div className="mt-4 flex items-center justify-center gap-3">
+          <Button
+            variant="outline"
+            size="sm"
+            className="gap-2"
+            onClick={() => window.print()}
+          >
+            <Printer className="h-4 w-4" />
+            Print / Save as PDF
+          </Button>
+          <a href="/handout.html" target="_blank" rel="noopener noreferrer">
+            <Button variant="outline" size="sm" className="gap-2">
+              <ExternalLink className="h-4 w-4" />
+              Printable Handout
+            </Button>
+          </a>
+        </div>
       </div>
 
       {/* What is Claude Code */}
