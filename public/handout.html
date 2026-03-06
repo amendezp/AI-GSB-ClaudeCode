@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Claude Code Workshop — Handout</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@700&display=swap');
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    @page {
+      size: letter;
+      margin: 0;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      color: #1a1a1a;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    .page {
+      width: 8.5in;
+      min-height: 11in;
+      padding: 0.55in 0.6in;
+      page-break-after: always;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .page:last-child { page-break-after: auto; }
+
+    /* PAGE 1 */
+    .page-1-header {
+      text-align: center;
+      margin-bottom: 0.3in;
+    }
+
+    .page-1-header .badge {
+      display: inline-block;
+      background: #fee2e2;
+      color: #dc2626;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 4px 14px;
+      border-radius: 20px;
+      margin-bottom: 10px;
+    }
+
+    .page-1-header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 30px;
+      font-weight: 700;
+      color: #111;
+      margin-bottom: 4px;
+    }
+
+    .page-1-header .subtitle {
+      font-size: 12px;
+      color: #666;
+    }
+
+    .qr-section {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      background: linear-gradient(135deg, #fef2f2, #fff1f2);
+      border: 1.5px solid #fecaca;
+      border-radius: 12px;
+      padding: 16px 20px;
+      margin-bottom: 0.25in;
+    }
+
+    .qr-section img {
+      width: 90px;
+      height: 90px;
+      border-radius: 8px;
+    }
+
+    .qr-section .qr-text h3 {
+      font-size: 13px;
+      font-weight: 700;
+      color: #dc2626;
+      margin-bottom: 3px;
+    }
+
+    .qr-section .qr-text p {
+      font-size: 11px;
+      color: #555;
+      line-height: 1.5;
+    }
+
+    .qr-section .qr-text .url {
+      display: inline-block;
+      margin-top: 4px;
+      font-family: 'SF Mono', 'Fira Code', monospace;
+      font-size: 12px;
+      font-weight: 600;
+      color: #dc2626;
+      background: white;
+      padding: 3px 10px;
+      border-radius: 6px;
+      border: 1px solid #fecaca;
+    }
+
+    .section-title {
+      font-size: 15px;
+      font-weight: 800;
+      color: #111;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .section-title .icon {
+      width: 22px;
+      height: 22px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+    }
+
+    .cheat-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 0.2in;
+    }
+
+    .cheat-card {
+      border: 1px solid #e5e5e5;
+      border-radius: 10px;
+      padding: 12px 14px;
+      background: #fafafa;
+    }
+
+    .cheat-card h4 {
+      font-size: 11px;
+      font-weight: 700;
+      color: #333;
+      margin-bottom: 5px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .cheat-card h4 .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    .cheat-card p, .cheat-card li {
+      font-size: 9.5px;
+      color: #555;
+      line-height: 1.55;
+    }
+
+    .cheat-card ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .cheat-card ul li {
+      padding-left: 10px;
+      position: relative;
+      margin-bottom: 2px;
+    }
+
+    .cheat-card ul li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: #999;
+    }
+
+    .cheat-card-full {
+      grid-column: 1 / -1;
+    }
+
+    .modes-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 6px;
+    }
+
+    .mode-pill {
+      text-align: center;
+      padding: 6px 8px;
+      border-radius: 8px;
+      border: 1px solid #e5e5e5;
+    }
+
+    .mode-pill .mode-name {
+      font-size: 9.5px;
+      font-weight: 700;
+      color: #333;
+    }
+
+    .mode-pill .mode-desc {
+      font-size: 8px;
+      color: #777;
+      margin-top: 1px;
+    }
+
+    .models-row {
+      display: flex;
+      gap: 6px;
+      margin-top: 6px;
+    }
+
+    .model-tag {
+      font-size: 9px;
+      padding: 3px 8px;
+      border-radius: 6px;
+      font-weight: 600;
+      border: 1px solid #e5e5e5;
+    }
+
+    .footer-line {
+      position: absolute;
+      bottom: 0.4in;
+      left: 0.6in;
+      right: 0.6in;
+      border-top: 1px solid #e5e5e5;
+      padding-top: 8px;
+      display: flex;
+      justify-content: space-between;
+      font-size: 8px;
+      color: #999;
+    }
+
+    /* PAGE 2 */
+    .page-2-header {
+      text-align: center;
+      margin-bottom: 0.3in;
+    }
+
+    .page-2-header .badge {
+      display: inline-block;
+      background: #ede9fe;
+      color: #7c3aed;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 4px 14px;
+      border-radius: 20px;
+      margin-bottom: 10px;
+    }
+
+    .page-2-header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      font-weight: 700;
+      color: #111;
+      margin-bottom: 4px;
+    }
+
+    .page-2-header .subtitle {
+      font-size: 12px;
+      color: #666;
+    }
+
+    .lesson-card {
+      border-radius: 12px;
+      padding: 20px 22px;
+      margin-bottom: 16px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .lesson-card::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 5px;
+    }
+
+    .lesson-1 {
+      background: linear-gradient(135deg, #eff6ff, #f0f7ff);
+      border: 1px solid #bfdbfe;
+    }
+    .lesson-1::before { background: linear-gradient(to bottom, #3b82f6, #4f46e5); }
+
+    .lesson-2 {
+      background: linear-gradient(135deg, #fffbeb, #fef9ee);
+      border: 1px solid #fde68a;
+    }
+    .lesson-2::before { background: linear-gradient(to bottom, #f59e0b, #ea580c); }
+
+    .lesson-3 {
+      background: linear-gradient(135deg, #fef2f2, #fff5f5);
+      border: 1px solid #fecaca;
+    }
+    .lesson-3::before { background: linear-gradient(to bottom, #ef4444, #e11d48); }
+
+    .lesson-number {
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: #888;
+      margin-bottom: 4px;
+    }
+
+    .lesson-card h3 {
+      font-size: 16px;
+      font-weight: 800;
+      color: #111;
+      margin-bottom: 6px;
+    }
+
+    .lesson-card .lead {
+      font-size: 11.5px;
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 8px;
+      line-height: 1.5;
+    }
+
+    .lesson-card .detail {
+      font-size: 10.5px;
+      color: #555;
+      line-height: 1.6;
+      background: rgba(255,255,255,0.6);
+      padding: 10px 14px;
+      border-radius: 8px;
+    }
+
+    .learn-more {
+      background: #f9fafb;
+      border: 1px solid #e5e5e5;
+      border-radius: 12px;
+      padding: 18px 22px;
+      margin-top: 0.25in;
+    }
+
+    .learn-more h3 {
+      font-size: 13px;
+      font-weight: 700;
+      color: #111;
+      margin-bottom: 10px;
+    }
+
+    .learn-more-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .learn-more-item .arrow {
+      color: #dc2626;
+      font-weight: 700;
+      font-size: 11px;
+      margin-top: 1px;
+    }
+
+    .learn-more-item .link {
+      font-size: 10.5px;
+      color: #dc2626;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .learn-more-item .desc {
+      font-size: 9.5px;
+      color: #777;
+    }
+
+    @media screen {
+      body { background: #e5e5e5; }
+      .page {
+        background: white;
+        max-width: 8.5in;
+        margin: 20px auto;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- PAGE 1: Cheat Sheet -->
+  <div class="page page-1">
+    <div class="page-1-header">
+      <div class="badge">Workshop Handout</div>
+      <h1>Claude Code in 5 Minutes</h1>
+      <p class="subtitle">Everything you need to know — on one page</p>
+    </div>
+
+    <!-- QR Code -->
+    <div class="qr-section">
+      <img
+        src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://gsbappliedai.com/&bgcolor=ffffff&color=dc2626&margin=8"
+        alt="QR Code to gsbappliedai.com"
+      />
+      <div class="qr-text">
+        <h3>Workshop Portal</h3>
+        <p>Scan to access the full interactive workshop with step-by-step tracks, prompts you can copy, and all the resources from today.</p>
+        <span class="url">gsbappliedai.com</span>
+      </div>
+    </div>
+
+    <!-- Cheat Sheet Grid -->
+    <div class="section-title">
+      <span class="icon" style="background:#fee2e2;color:#dc2626;">&#9679;</span>
+      Your Cheat Sheet
+    </div>
+
+    <div class="cheat-grid">
+      <!-- What is Claude Code -->
+      <div class="cheat-card">
+        <h4><span class="dot" style="background:#3b82f6;"></span> What is Claude Code?</h4>
+        <p>A highly agentic coding assistant by Anthropic. It reads your files, writes code, runs commands, and builds entire projects. Fundamentally a CLI, but today we use it through the Desktop app.</p>
+      </div>
+
+      <!-- Why now -->
+      <div class="cheat-card">
+        <h4><span class="dot" style="background:#f59e0b;"></span> Why Is Everyone Talking About It?</h4>
+        <p>Claude Opus 4 (June 2025) and Opus 4.5 (Feb 2026) changed everything: production-quality code, true agentic behavior, larger context windows, and deep tool integration via MCP.</p>
+      </div>
+
+      <!-- Permission Modes -->
+      <div class="cheat-card cheat-card-full">
+        <h4><span class="dot" style="background:#8b5cf6;"></span> Permission Modes</h4>
+        <div class="modes-grid">
+          <div class="mode-pill" style="background:#eff6ff; border-color:#bfdbfe;">
+            <div class="mode-name">Ask Permissions</div>
+            <div class="mode-desc">Approves each action. Best for learning.</div>
+          </div>
+          <div class="mode-pill" style="background:#f5f3ff; border-color:#ddd6fe;">
+            <div class="mode-name">Plan Mode</div>
+            <div class="mode-desc">Plans first, then executes. Great for complex tasks.</div>
+          </div>
+          <div class="mode-pill" style="background:#fffbeb; border-color:#fde68a;">
+            <div class="mode-name">Auto Accept</div>
+            <div class="mode-desc">Full autonomy. Fast, but use with caution.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Models -->
+      <div class="cheat-card">
+        <h4><span class="dot" style="background:#ec4899;"></span> Models</h4>
+        <div class="models-row">
+          <span class="model-tag" style="background:#fdf2f8; color:#be185d;">Opus 4.6 — Most capable</span>
+        </div>
+        <div class="models-row">
+          <span class="model-tag">Sonnet 4.6 — Fast + capable</span>
+          <span class="model-tag">Haiku 4.5 — Fastest</span>
+        </div>
+      </div>
+
+      <!-- How to use it -->
+      <div class="cheat-card">
+        <h4><span class="dot" style="background:#10b981;"></span> How to Use It</h4>
+        <ul>
+          <li>Open the Claude Desktop app</li>
+          <li>Select a project folder</li>
+          <li>Describe what you want in plain English</li>
+          <li>Review and approve changes</li>
+          <li>Iterate together</li>
+        </ul>
+      </div>
+
+      <!-- Key Concepts -->
+      <div class="cheat-card cheat-card-full">
+        <h4><span class="dot" style="background:#6366f1;"></span> Key Concepts</h4>
+        <div style="display:grid; grid-template-columns: 1fr 1fr 1fr; gap: 4px;">
+          <p><strong>CLAUDE.md</strong> — Memory file that persists across sessions</p>
+          <p><strong>MCP</strong> — Protocol letting Claude use external tools</p>
+          <p><strong>Worktree</strong> — Sandbox to experiment safely</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-line">
+      <span>GSB Applied AI Workshop</span>
+      <span>gsbappliedai.com</span>
+    </div>
+  </div>
+
+  <!-- PAGE 2: 3 Lessons -->
+  <div class="page page-2">
+    <div class="page-2-header">
+      <div class="badge">Take These With You</div>
+      <h1>3 Lessons to Walk Away With</h1>
+      <p class="subtitle">Keep these in mind long after today</p>
+    </div>
+
+    <!-- Lesson 1 -->
+    <div class="lesson-card lesson-1">
+      <div class="lesson-number">Lesson 1</div>
+      <h3>Think Before You Build</h3>
+      <p class="lead">Do not outsource your thinking. AI can build fast, but speed without direction is just expensive chaos.</p>
+      <div class="detail">
+        Before every prototype, ask yourself three questions: <strong>What</strong> am I building? <strong>Why</strong> does it matter? And <strong>who</strong> is it for? If you can't answer clearly, Claude can't help you either.
+      </div>
+    </div>
+
+    <!-- Lesson 2 -->
+    <div class="lesson-card lesson-2">
+      <div class="lesson-number">Lesson 2</div>
+      <h3>A Prototype Is NOT a Product</h3>
+      <p class="lead">You can't vibe code your way to product-market fit. Prototypes are meant to test and validate ideas.</p>
+      <div class="detail">
+        Real products require scale, reliability, and very high levels of security — especially AI applications. What we build today is a starting point for learning, not a launchpad to production.
+      </div>
+    </div>
+
+    <!-- Lesson 3 -->
+    <div class="lesson-card lesson-3">
+      <div class="lesson-number">Lesson 3</div>
+      <h3>Agency & Accountability</h3>
+      <p class="lead">The most important lesson: don't forget what makes us human.</p>
+      <div class="detail">
+        You are responsible for what your agents build. Every time you accept a recommendation or send a prompt, you are taking an action for which you are accountable. AI is a powerful tool — but the judgment, ethics, and decisions remain yours.
+      </div>
+    </div>
+
+    <!-- Learn More -->
+    <div class="learn-more">
+      <h3>Keep Learning</h3>
+      <div class="learn-more-item">
+        <span class="arrow">&#8594;</span>
+        <div>
+          <a class="link" href="https://www.deeplearning.ai/short-courses/claude-code-a-highly-agentic-coding-assistant/">DeepLearning.AI — Claude Code Short Course</a>
+          <div class="desc">Free, hands-on course for building with Claude Code step by step.</div>
+        </div>
+      </div>
+      <div class="learn-more-item">
+        <span class="arrow">&#8594;</span>
+        <div>
+          <a class="link" href="https://docs.anthropic.com/en/docs/claude-code">Claude Code Documentation</a>
+          <div class="desc">Official Anthropic docs covering setup, configuration, and advanced features.</div>
+        </div>
+      </div>
+      <div class="learn-more-item">
+        <span class="arrow">&#8594;</span>
+        <div>
+          <a class="link" href="https://gsbappliedai.com/">gsbappliedai.com</a>
+          <div class="desc">All workshop tracks, prompts, and resources — bookmark this!</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-line">
+      <span>GSB Applied AI Workshop</span>
+      <span>gsbappliedai.com</span>
+    </div>
+  </div>
+
+</body>
+</html>
