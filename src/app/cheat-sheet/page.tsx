@@ -348,7 +348,7 @@ export default function CheatSheetPage() {
               <ExternalLink className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
               <span>
                 <a
-                  href="https://www.deeplearning.ai/short-courses/claude-code/"
+                  href="https://www.deeplearning.ai/short-courses/claude-code-a-highly-agentic-coding-assistant/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="font-medium text-primary underline underline-offset-2 hover:text-primary/80"
