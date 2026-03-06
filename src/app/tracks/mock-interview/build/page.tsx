@@ -2,7 +2,7 @@
 
 import { TrackSection } from "@/components/tracks/track-section";
 import { getSectionOffset } from "@/lib/mock-interview-sections";
-import { Zap, Sparkles } from "lucide-react";
+import { Zap, Sparkles, Rocket } from "lucide-react";
 import type { TrackStep } from "@/components/tracks/track-steps";
 
 function BuildIntro() {
@@ -65,6 +65,28 @@ const steps: TrackStep[] = [
     description:
       'Once you\'re happy with the plan, approve it. Claude will switch to implementation mode and start writing code. This may take a few minutes — it\'s building an entire web app! If Claude keeps asking for permission at each step, switch to "Auto accept edits" to let it flow.',
     illustration: <BuildWowCallout />,
+  },
+  {
+    title: "We're not done yet!",
+    description:
+      "Your app works locally — amazing! But right now it only lives on your machine. In the next steps, we'll push your code to a GitHub repository and then deploy it to production on Vercel so anyone in the world can use it. Let's keep going!",
+    illustration: (
+      <div className="mt-2 rounded-lg border border-blue-200 bg-gradient-to-r from-blue-50 to-cyan-50 p-4">
+        <div className="flex items-start gap-3">
+          <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-blue-100">
+            <Rocket className="h-4 w-4 text-blue-600" />
+          </div>
+          <div className="text-sm leading-relaxed text-blue-900">
+            <p className="font-semibold">From localhost to the world</p>
+            <p className="mt-1 text-blue-800">
+              Building the app was the hard part — now we need to get your code
+              into a repository and deploy it into production. Two more sections
+              and your app will be live on the internet!
+            </p>
+          </div>
+        </div>
+      </div>
+    ),
   },
 ];
 
