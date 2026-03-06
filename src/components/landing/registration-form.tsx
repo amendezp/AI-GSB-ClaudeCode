@@ -17,9 +17,8 @@ const schema = z.object({
 type FormData = z.infer<typeof schema>;
 
 export function RegistrationForm() {
-  const { isRegistered, email, setRegistration, isAllComplete } =
+  const { isRegistered, email, setRegistration } =
     useWorkshopStore();
-  const allComplete = isAllComplete();
 
   const {
     register,
@@ -44,7 +43,7 @@ export function RegistrationForm() {
 
   return (
     <AnimatePresence>
-      {allComplete && (
+      {(
         <motion.div
           initial={{ opacity: 0, height: 0 }}
           animate={{ opacity: 1, height: "auto" }}
