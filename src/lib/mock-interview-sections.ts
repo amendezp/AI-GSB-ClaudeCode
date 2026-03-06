@@ -37,6 +37,15 @@ export const MOCK_INTERVIEW_SECTIONS: Section[] = [
     estimatedTime: "~5 min",
     stepCount: 5,
   },
+  {
+    id: "voice",
+    number: 5,
+    title: "Voice Input",
+    shortTitle: "Voice",
+    href: "/tracks/mock-interview/voice",
+    estimatedTime: "Stretch",
+    stepCount: 5,
+  },
 ];
 
 /** Compute the global step index offset for a given section */

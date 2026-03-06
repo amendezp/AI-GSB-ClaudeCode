@@ -131,8 +131,9 @@ export default function DeployPage() {
       sectionDescription="Deploy your interview app to the web with Vercel and set up your API key."
       steps={steps}
       stepIndexOffset={getSectionOffset(3)}
-      isLastSection
       introContent={<DeployIntro />}
+      nextSectionHref="/tracks/mock-interview/voice"
+      nextSectionLabel="Continue to Stretch Goal"
     />
   );
 }
