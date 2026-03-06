@@ -29,31 +29,33 @@ export function Header() {
     <header className="sticky top-0 z-50 border-b border-border/60 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80">
       <div className="mx-auto flex h-16 max-w-5xl items-center justify-between px-4 sm:px-6">
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-2">
-          <div className="flex items-baseline gap-0.5">
-            <span className="font-serif text-xl font-bold tracking-tight text-primary">
-              AI
+        <div className="flex items-center gap-2">
+          <Link href="/" className="flex items-center gap-2">
+            <div className="flex items-baseline gap-0.5">
+              <span className="font-serif text-xl font-bold tracking-tight text-primary">
+                AI
+              </span>
+              <span className="font-serif text-xl font-light text-muted-foreground">
+                @
+              </span>
+              <span className="font-serif text-xl font-bold tracking-tight text-primary">
+                GSB
+              </span>
+            </div>
+            <span className="hidden text-sm text-muted-foreground sm:inline">
+              Claude Code Workshop
             </span>
-            <span className="font-serif text-xl font-light text-muted-foreground">
-              @
-            </span>
-            <span className="font-serif text-xl font-bold tracking-tight text-primary">
-              GSB
-            </span>
-          </div>
-          <span className="hidden items-center gap-1.5 text-sm text-muted-foreground sm:inline-flex">
-            Claude Code Workshop
-            <span className="text-muted-foreground/40">·</span>
-            <a
-              href="https://www.linkedin.com/in/amendezp/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-[11px] text-muted-foreground/60 underline underline-offset-2 decoration-muted-foreground/30 hover:text-primary hover:decoration-primary transition-colors"
-            >
-              by Alfredo Mendez
-            </a>
-          </span>
-        </Link>
+          </Link>
+          <span className="hidden text-muted-foreground/40 sm:inline">·</span>
+          <a
+            href="https://www.linkedin.com/in/amendezp/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hidden text-[11px] text-muted-foreground/60 underline underline-offset-2 decoration-muted-foreground/30 hover:text-primary hover:decoration-primary transition-colors sm:inline"
+          >
+            by Alfredo Mendez
+          </a>
+        </div>
 
         {/* Progress Steps */}
         <nav className="flex items-center gap-1 sm:gap-2">
