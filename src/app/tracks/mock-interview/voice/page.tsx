@@ -2,7 +2,36 @@
 
 import { TrackSection } from "@/components/tracks/track-section";
 import { getSectionOffset } from "@/lib/mock-interview-sections";
+import { Mic } from "lucide-react";
 import type { TrackStep } from "@/components/tracks/track-steps";
+
+function VoiceIntro() {
+  return (
+    <div className="rounded-lg border bg-card p-5">
+      <div className="flex items-start gap-3">
+        <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-indigo-100">
+          <Mic className="h-5 w-5 text-indigo-700" />
+        </div>
+        <div>
+          <h3 className="font-medium text-foreground">
+            Voice is the future of AI interaction
+          </h3>
+          <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
+            Voice is rapidly becoming the primary way people interact with AI.
+            From smart assistants to AI-powered customer service, speaking is
+            faster and more natural than typing. For an interview simulator,
+            this is especially important — real interviews are{" "}
+            <strong className="text-foreground">spoken conversations</strong>,
+            not written essays. By adding voice input, users can speak their
+            answers naturally, have them transcribed to text, and get AI
+            feedback on what they actually said — simulating the real interview
+            experience far more authentically.
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 const steps: TrackStep[] = [
   {
@@ -71,6 +100,7 @@ export default function VoicePage() {
       stepIndexOffset={getSectionOffset(5)}
       isLastSection
       isStretchGoal
+      introContent={<VoiceIntro />}
     />
   );
 }
