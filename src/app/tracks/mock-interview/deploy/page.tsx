@@ -59,9 +59,7 @@ function CongratsBanner() {
           <p className="mt-1 text-emerald-800">
             You just built and deployed a full AI-powered web application.
             Share the link with friends, classmates, or use it for actual
-            interview prep. What you built today would have taken a team
-            of developers weeks to create. Welcome to the future of building
-            with AI.
+            interview prep. Welcome to the future of building with AI.
           </p>
         </div>
       </div>
