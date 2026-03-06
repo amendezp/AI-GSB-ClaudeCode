@@ -56,7 +56,7 @@ export default function TracksPage() {
             Feedback is a gift
           </h3>
           <p className="mt-1 text-sm text-muted-foreground">
-            As we learned at the GSB — help us make this workshop better.
+            Help us make this workshop better.
           </p>
           <a
             href="https://docs.google.com/forms/d/e/1FAIpQLScgaRPTnBxHVMfDJK6_Mb4XsRK5X-YGB5wePBd8bbo42dBKgQ/viewform?usp=publish-editor"
