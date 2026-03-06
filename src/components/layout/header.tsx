@@ -41,8 +41,18 @@ export function Header() {
               GSB
             </span>
           </div>
-          <span className="hidden text-sm text-muted-foreground sm:inline">
-            Claude Code Workshop
+          <span className="hidden flex-col sm:inline-flex">
+            <span className="text-sm text-muted-foreground">
+              Claude Code Workshop
+            </span>
+            <a
+              href="https://www.linkedin.com/in/amendezp/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[10px] text-muted-foreground/60 hover:text-primary transition-colors"
+            >
+              by Alfredo Mendez
+            </a>
           </span>
         </Link>
 
