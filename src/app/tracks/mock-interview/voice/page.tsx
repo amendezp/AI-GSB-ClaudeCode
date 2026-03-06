@@ -63,12 +63,12 @@ export default function VoicePage() {
   return (
     <TrackSection
       trackId="mock-interview"
-      sectionIndex={4}
+      sectionIndex={5}
       accentClass="track-3"
       sectionTitle="Voice Input"
       sectionDescription="Add voice recording as an alternative way to answer interview questions."
       steps={steps}
-      stepIndexOffset={getSectionOffset(4)}
+      stepIndexOffset={getSectionOffset(5)}
       isLastSection
       isStretchGoal
     />

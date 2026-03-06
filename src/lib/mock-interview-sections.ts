@@ -38,8 +38,17 @@ export const MOCK_INTERVIEW_SECTIONS: Section[] = [
     stepCount: 5,
   },
   {
-    id: "voice",
+    id: "branding",
     number: 5,
+    title: "Branding & Design",
+    shortTitle: "Branding",
+    href: "/tracks/mock-interview/branding",
+    estimatedTime: "Stretch",
+    stepCount: 5,
+  },
+  {
+    id: "voice",
+    number: 6,
     title: "Voice Input",
     shortTitle: "Voice",
     href: "/tracks/mock-interview/voice",

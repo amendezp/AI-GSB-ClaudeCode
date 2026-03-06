@@ -132,7 +132,7 @@ export default function DeployPage() {
       steps={steps}
       stepIndexOffset={getSectionOffset(3)}
       introContent={<DeployIntro />}
-      nextSectionHref="/tracks/mock-interview/voice"
+      nextSectionHref="/tracks/mock-interview/branding"
       nextSectionLabel="Continue to Stretch Goal"
     />
   );
