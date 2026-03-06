@@ -28,6 +28,8 @@ export interface Track {
   href: string;
   accentClass: string;
   icon: string;
+  tag?: string;
+  featured?: boolean;
 }
 
 export type WorkshopStep = 0 | 1 | 2;
