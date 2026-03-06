@@ -17,7 +17,7 @@ const schema = z.object({
 type FormData = z.infer<typeof schema>;
 
 export function RegistrationForm() {
-  const { isRegistered, email, setRegistration } =
+  const { isRegistered, email, setRegistration, hydrateFromServer } =
     useWorkshopStore();
 
   const {
@@ -30,13 +30,17 @@ export function RegistrationForm() {
 
   const onSubmit = async (data: FormData) => {
     try {
-      await fetch("/api/register", {
+      const res = await fetch("/api/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email: data.email }),
       });
+      const result = await res.json();
+      if (result.progress) {
+        hydrateFromServer(result.progress);
+      }
     } catch {
-      // Stub API might not be running — store locally anyway
+      // Server might be down — continue with local-only mode
     }
     setRegistration(data.email);
   };

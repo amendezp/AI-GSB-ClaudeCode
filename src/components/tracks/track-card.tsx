@@ -32,7 +32,7 @@ const tagConfig: Record<string, { icon: React.ElementType; className: string }> 
     },
     "Core Workshop": {
       icon: Star,
-      className: "bg-teal-100 text-teal-800",
+      className: "bg-red-100 text-red-800",
     },
     Bonus: {
       icon: Gift,
@@ -57,7 +57,7 @@ export function TrackCard({ track }: TrackCardProps) {
         isComplete
           ? "border-green-200 bg-green-50/30"
           : track.featured
-            ? "border-2 bg-gradient-to-br from-white to-teal-50/40"
+            ? "border-2 bg-gradient-to-br from-white to-red-50/40"
             : ""
       }`}
       style={

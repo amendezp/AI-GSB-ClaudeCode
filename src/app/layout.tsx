@@ -4,6 +4,7 @@ import { Analytics } from "@vercel/analytics/next";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
+import { SyncProvider } from "@/components/sync-provider";
 import "./globals.css";
 
 const inter = Inter({
@@ -39,11 +40,13 @@ export default function RootLayout({
         className={`${inter.variable} ${sourceSerif.variable} font-sans antialiased`}
       >
         <TooltipProvider>
-          <div className="flex min-h-screen flex-col">
-            <Header />
-            <main className="flex-1">{children}</main>
-            <Footer />
-          </div>
+          <SyncProvider>
+            <div className="flex min-h-screen flex-col">
+              <Header />
+              <main className="flex-1">{children}</main>
+              <Footer />
+            </div>
+          </SyncProvider>
         </TooltipProvider>
         <Analytics />
       </body>
