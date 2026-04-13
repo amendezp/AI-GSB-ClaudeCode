@@ -76,7 +76,7 @@ export default function TracksPage() {
             Help us make this workshop better.
           </p>
           <a
-            href="https://docs.google.com/forms/d/e/1FAIpQLScgaRPTnBxHVMfDJK6_Mb4XsRK5X-YGB5wePBd8bbo42dBKgQ/viewform?usp=publish-editor"
+            href="https://docs.google.com/forms/d/e/1FAIpQLScABedHVgsIitbv8aG2hJKYgV6XW30BZ9osIJa1aF9kb_wfTg/viewform?usp=dialog"
             target="_blank"
             rel="noopener noreferrer"
           >
